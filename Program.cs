@@ -4,7 +4,9 @@
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.Clear();
+            Console.WriteLine("Entity Framework Core");
+            
         }
     }
 }
