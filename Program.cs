@@ -10,16 +10,23 @@ namespace Teste1EF
             Console.Clear();
             Console.WriteLine("Entity Framework Core");
 
-            using (var db = new DataContext())
+            using var db = new DataContext();
+
+            db.Paises.Add(new Pais()
             {
-                var pais = new Pais()
-                {
-                    Nome = "País de Marcio",
-                    Codigo = 1058
-                };
-                db.Paises.Add(pais);
-                db.SaveChanges();
-            }
+                Nome = "Brasil",
+                Codigo = 1058
+            });
+            db.SaveChanges();
+
+            // var pais = new Pais()
+            // {
+            //     Nome = "País de Marcio",
+            //     Codigo = 1058
+            // };
+            // db.Paises.Add(pais);
+            // db.SaveChanges();
+
         }
     }
 }
