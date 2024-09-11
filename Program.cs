@@ -6,6 +6,7 @@ namespace Teste1EF
     internal class Program
     {
         static string codigo = "105800";
+        static string linha = "--------------------------------------------------------------------------------------";
 
         private static void Main(string[] args)
         {
@@ -17,7 +18,7 @@ namespace Teste1EF
             var novoPais = new Pais
             {
                 Nome = "País de Marcio",
-                Codigo = "105800"
+                Codigo = codigo
             };
 
             context.Paises.Add(novoPais);
@@ -35,8 +36,10 @@ namespace Teste1EF
             context.Estados.Add(novoEstado);
             context.SaveChanges();
 
-            Console.WriteLine($"País inserido: {novoPais.Id}, {novoPais.Nome}, Código: {novoPais.Codigo}");
-            Console.WriteLine($"Estado inserido: {novoEstado.Id}, {novoEstado.Nome}, CódigoIbge: {novoEstado.CodigoIbge}");
+            Console.WriteLine(linha);
+            Console.WriteLine($"País inserido -> Id: {novoPais.Id}, Nome: {novoPais.Nome}, Código: {novoPais.Codigo}");
+            Console.WriteLine($"Estado inserido -> Id: {novoEstado.Id}, Nome: {novoEstado.Nome}, CódigoIbge: {novoEstado.CodigoIbge}, PaisId: {novoEstado.PaisId}");
+            Console.WriteLine(linha);
         }
 
         static void InserirPais(DataContext context)

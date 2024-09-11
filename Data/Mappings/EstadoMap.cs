@@ -4,9 +4,6 @@ using pratico.Models;
 
 namespace pratico.Data.Mappings
 {
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
     public class EstadoMap : IEntityTypeConfiguration<Estado>
     {
         public void Configure(EntityTypeBuilder<Estado> builder)
@@ -14,7 +11,7 @@ namespace pratico.Data.Mappings
             builder.ToTable("estado");
 
             builder.HasKey(e => e.Id)
-                   .HasName("estado_pkey");
+                   .HasName("pk_estado_id");
 
             builder.Property(e => e.Id)
                    .HasColumnName("id")

@@ -4,9 +4,6 @@ using pratico.Models;
 
 namespace pratico.Data.Mappings
 {
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
     public class PaisMap : IEntityTypeConfiguration<Pais>
     {
         public void Configure(EntityTypeBuilder<Pais> builder)
