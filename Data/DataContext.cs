@@ -7,7 +7,7 @@ namespace pratico.Data
     public class DataContext : DbContext
     {
         public DbSet<Pais> Paises { get; set; }
-        public DbSet<Estado> Estados { get; set; }
+        // public DbSet<Estado> Estados { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -18,7 +18,7 @@ namespace pratico.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new PaisMap());
-            builder.ApplyConfiguration(new EstadoMap());
+            // builder.ApplyConfiguration(new EstadoMap());
         }
     }
 }

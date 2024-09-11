@@ -15,8 +15,7 @@ namespace pratico.Data.Mappings
 
             builder.Property(x => x.Id)
                 .HasColumnName("id")
-                .ValueGeneratedOnAdd()
-                .UseIdentityColumn();
+                .ValueGeneratedOnAdd();
 
             builder.Property(x => x.Nome)
                 .IsRequired()
