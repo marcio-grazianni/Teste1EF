@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using pratico.Models;
 
@@ -11,7 +10,8 @@ namespace pratico.Data.Mappings
         {
             builder.ToTable("estado");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id)
+                   .HasName("pk_estado_id");
 
             builder.Property(x => x.Id)
                 .HasColumnName("id")
@@ -33,15 +33,15 @@ namespace pratico.Data.Mappings
                 .HasColumnName("codigo_ibge")
                 .HasColumnType("INTEGER");
 
-            // builder.Property(x => x.Pais)
-            //     .IsRequired()
-            //     .HasColumnName("pais_id")
-            //     .HasColumnType("INTEGER");
+            builder.Property(x => x.Pais)
+                .IsRequired()
+                .HasColumnName("pais_id")
+                .HasColumnType("INTEGER");
 
-            // builder.HasOne(x => x.Pais)
-            //     .WithMany(x => x.Estados)
-            //     .HasConstraintName("fk_estado_paisid")
-            //     .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Pais)
+                .WithMany(x => x.Estados)
+                .HasConstraintName("fk_estado_paisid")
+                .OnDelete(DeleteBehavior.NoAction);
 
             // builder.Property(x => x.DataCadastro)
             //     .IsRequired()

@@ -10,7 +10,8 @@ namespace pratico.Data.Mappings
         {
             builder.ToTable("pais");
 
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id)
+                   .HasName("pk_pais_id");
 
             builder.Property(x => x.Id)
                 .HasColumnName("id")
@@ -28,8 +29,8 @@ namespace pratico.Data.Mappings
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(20);
 
-            builder.HasIndex(x => x.Codigo, "idx_pais_codigo")
-                .IsUnique();
+            // builder.HasIndex(x => x.Codigo, "idx_pais_codigo")
+            //     .IsUnique();
         }
     }
 }
