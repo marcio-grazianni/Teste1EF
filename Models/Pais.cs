@@ -7,6 +7,8 @@ namespace pratico.Models
         public string? Codigo { get; set; }
 
         // Propriedade de navegação para o relacionamento com Estado
-        public List<Estado> Estados { get; set; } = new List<Estado>();
+        // Desnecessário, pois o relacionamento ja foi
+        // criado no mapeamento da tabela estado
+        // public List<Estado> Estados { get; set; } = new List<Estado>();
     }
 }

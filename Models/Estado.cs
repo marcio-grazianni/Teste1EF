@@ -9,7 +9,7 @@ namespace pratico.Models
         public DateTime DataCadastro { get; set; }
         public TimeSpan HoraCadastro { get; set; }
 
-        // Chave estrangeira
+        // Relacionamento com a tabela País
         public int PaisId { get; set; }
         public Pais? Pais { get; set; }
     }

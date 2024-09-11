@@ -38,7 +38,7 @@ namespace Teste1EF
 
             Console.WriteLine(linha);
             Console.WriteLine($"País inserido -> Id: {novoPais.Id}, Nome: {novoPais.Nome}, Código: {novoPais.Codigo}");
-            Console.WriteLine($"Estado inserido -> Id: {novoEstado.Id}, Nome: {novoEstado.Nome}, CódigoIbge: {novoEstado.CodigoIbge}, PaisId: {novoEstado.PaisId}");
+            Console.WriteLine($"Estado inserido -> Id: {novoEstado.Id}, Nome: {novoEstado.Nome}, CódigoIbge: {novoEstado.CodigoIbge}, PaisId: {novoEstado.Pais!.Id}, PaisNome: {novoEstado.Pais!.Nome}");
             Console.WriteLine(linha);
         }
 
