@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace pratico.Models
 {
     public class Estado
@@ -9,6 +12,5 @@ namespace pratico.Models
         public int PaisId { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime HoraCadastro { get; set; }
-
     }
 }
