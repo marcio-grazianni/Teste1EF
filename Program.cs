@@ -14,8 +14,29 @@ namespace Teste1EF
 
             using var context = new DataContext();
 
-            // Inserir um novo país
-            InserirPais(context);
+            var novoPais = new Pais
+            {
+                Nome = "País de Marcio",
+                Codigo = "105800"
+            };
+
+            context.Paises.Add(novoPais);
+            context.SaveChanges();
+
+            var novoEstado = new Estado
+            {
+                Nome = "Estado de Marcio",
+                Sigla = "EM",
+                CodigoIbge = 1234567,
+                PaisId = novoPais.Id
+                // Pais = novoPais
+            };
+
+            context.Estados.Add(novoEstado);
+            context.SaveChanges();
+
+            Console.WriteLine($"País inserido: {novoPais.Id}, {novoPais.Nome}, Código: {novoPais.Codigo}");
+            Console.WriteLine($"Estado inserido: {novoEstado.Id}, {novoEstado.Nome}, CódigoIbge: {novoEstado.CodigoIbge}");
         }
 
         static void InserirPais(DataContext context)
@@ -28,8 +49,20 @@ namespace Teste1EF
 
             context.Paises.Add(novoPais);
             context.SaveChanges();
+            Console.WriteLine($"País inserido: {novoPais.Id}, {novoPais.Nome}, Código: {novoPais.Codigo}");
 
-            Console.WriteLine($"País inserido: {novoPais.Nome}, Código: {novoPais.Codigo}");
+            var novoEstado = new Estado
+            {
+                Nome = "Estado de Marcio",
+                Sigla = "EM",
+                CodigoIbge = 2304400,
+                PaisId = novoPais.Id
+            };
+
+            context.Estados.Add(novoEstado);
+            context.SaveChanges();
+
+            // Console.WriteLine($"País inserido: {novoPais.Id}, {novoPais.Nome}, Código: {novoPais.Codigo}");
         }
 
     }

@@ -4,33 +4,37 @@ using pratico.Models;
 
 namespace pratico.Data.Mappings
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class PaisMap : IEntityTypeConfiguration<Pais>
     {
         public void Configure(EntityTypeBuilder<Pais> builder)
         {
             builder.ToTable("pais");
 
-            builder.HasKey(x => x.Id)
+            builder.HasKey(p => p.Id)
                    .HasName("pk_pais_id");
 
-            builder.Property(x => x.Id)
-                .HasColumnName("id")
-                .ValueGeneratedOnAdd();
+            builder.Property(p => p.Id)
+                   .HasColumnName("id")
+                   .ValueGeneratedOnAdd();
 
-            builder.Property(x => x.Nome)
-                .IsRequired()
-                .HasColumnName("nome")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(60);
+            builder.Property(p => p.Nome)
+                   .HasColumnName("nome")
+                   .HasColumnType("VARCHAR(60)")
+                   .IsRequired();
 
-            builder.Property(x => x.Codigo)
-                .IsRequired()
-                .HasColumnName("codigo")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(20);
+            builder.Property(p => p.Codigo)
+                   .HasColumnName("codigo")
+                   .HasColumnType("VARCHAR(20)")
+                   .IsRequired();
 
-            // builder.HasIndex(x => x.Codigo, "idx_pais_codigo")
-            //     .IsUnique();
+            // Relacionamento um-para-muitos com Estados
+            builder.HasMany(p => p.Estados)
+                   .WithOne(e => e.Pais)
+                   .HasForeignKey(e => e.PaisId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -4,57 +4,59 @@ using pratico.Models;
 
 namespace pratico.Data.Mappings
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class EstadoMap : IEntityTypeConfiguration<Estado>
     {
         public void Configure(EntityTypeBuilder<Estado> builder)
         {
             builder.ToTable("estado");
 
-            builder.HasKey(x => x.Id)
-                   .HasName("pk_estado_id");
+            builder.HasKey(e => e.Id)
+                   .HasName("estado_pkey");
 
-            builder.Property(x => x.Id)
-                .HasColumnName("id")
-                .ValueGeneratedOnAdd();
+            builder.Property(e => e.Id)
+                   .HasColumnName("id")
+                   .HasColumnType("BIGINT")
+                   .ValueGeneratedOnAdd();
 
-            builder.Property(x => x.Nome)
-                .IsRequired()
-                .HasColumnName("nome")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(40);
+            builder.Property(e => e.Nome)
+                   .HasColumnName("nome")
+                   .HasColumnType("VARCHAR(40)")
+                   .IsRequired();
 
-            builder.Property(x => x.Sigla)
-                .IsRequired()
-                .HasColumnName("sigla")
-                .HasColumnType("VARCHAR")
-                .HasMaxLength(2);
+            builder.Property(e => e.Sigla)
+                   .HasColumnName("sigla")
+                   .HasColumnType("VARCHAR(2)")
+                   .IsRequired();
 
-            builder.Property(x => x.CodigoIbge)
-                .HasColumnName("codigo_ibge")
-                .HasColumnType("INTEGER");
+            builder.Property(e => e.CodigoIbge)
+                   .HasColumnName("codigo_ibge")
+                   .HasColumnType("INTEGER");
 
-            builder.Property(x => x.Pais)
-                .IsRequired()
-                .HasColumnName("pais_id")
-                .HasColumnType("INTEGER");
+            builder.Property(e => e.DataCadastro)
+                   .HasColumnName("data_cadastro")
+                   .HasColumnType("DATE")
+                   .HasDefaultValueSql("now()")
+                   .IsRequired();
 
-            builder.HasOne(x => x.Pais)
-                .WithMany(x => x.Estados)
-                .HasConstraintName("fk_estado_paisid")
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.Property(e => e.HoraCadastro)
+                   .HasColumnName("hora_cadastro")
+                   .HasColumnType("TIME WITHOUT TIME ZONE")
+                   .HasDefaultValueSql("now()")
+                   .IsRequired();
 
-            // builder.Property(x => x.DataCadastro)
-            //     .IsRequired()
-            //     .HasColumnName("data_cadastro")
-            //     .HasColumnType("DATE")
-            //     .HasDefaultValueSql("CURRENT_DATE");
+            builder.Property(e => e.PaisId)
+                   .HasColumnName("pais_id")
+                   .HasColumnType("BIGINT")
+                   .IsRequired();
 
-            // builder.Property(x => x.HoraCadastro)
-            //     .IsRequired()
-            //     .HasColumnName("hora_cadastro")
-            //     .HasColumnType("TIME")
-            //     .HasDefaultValueSql("CURRENT_TIME");
-
+            // Relacionamento com a tabela Pais
+            builder.HasOne(e => e.Pais)
+                   .WithMany(p => p.Estados)
+                   .HasForeignKey(e => e.PaisId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
